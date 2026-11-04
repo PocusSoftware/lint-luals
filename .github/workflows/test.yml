@@ -1,0 +1,131 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  pass:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, ubuntu-26.04-arm, macos-latest, windows-latest]
+    name: Pass (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 26
+          cache: pnpm
+      - name: Build
+        run: pnpm run build
+
+      - name: Lint
+        uses: ./
+        with:
+          check: ./tests/pass
+
+  fail:
+    name: Fail
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 26
+          cache: pnpm
+      - name: Build
+        run: pnpm run build
+
+      - name: Lint
+        id: lint
+        uses: ./
+        continue-on-error: true
+        with:
+          check: ./tests/fail
+
+      - name: Ensure fail
+        if: steps.lint.outcome != 'failure'
+        run: |
+          echo "::error::Expected lint action to fail"
+          exit 1
+
+  version:
+    name: Version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 26
+          cache: pnpm
+      - name: Build
+        run: pnpm run build
+
+      - name: Lint
+        uses: ./
+        with:
+          check: ./tests/pass
+          version: 3.19.1
+
+  checklevel:
+    name: Checklevel
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 26
+          cache: pnpm
+      - name: Build
+        run: pnpm run build
+
+      - name: Lint
+        uses: ./
+        with:
+          check: ./tests/checklevel
+          checklevel: Error
+
+  configpath:
+    name: Configpath
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 26
+          cache: pnpm
+      - name: Build
+        run: pnpm run build
+
+      - name: Lint
+        uses: ./
+        with:
+          check: ./tests/configpath
+          configpath: ./someconfig.json

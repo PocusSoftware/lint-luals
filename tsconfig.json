@@ -1,0 +1,14 @@
+{
+  "$schema": "https://www.schemastore.org/tsconfig.json",
+  "extends": "@d4isdavid/config/tsconfig/base",
+  "compilerOptions": {
+    "module": "preserve",
+    "types": ["node"],
+
+    "noEmit": true,
+
+    "lib": ["ESNext"],
+    "target": "esnext"
+  },
+  "include": ["src", "scripts", "oxfmt.config.ts", "oxlint.config.ts"]
+}

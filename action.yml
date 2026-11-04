@@ -1,0 +1,37 @@
+name: 'Lint LuaLS'
+description: 'Check your Lua code with Lua Language Server.'
+
+inputs:
+  version:
+    description: |
+      The LuaLS release tag to install (e.g. 3.19.1).
+    default: ''
+  token:
+    description: |
+      The personal access token (PAT) to use for downloading LuaLS.
+    required: true
+    default: ${{ github.token }}
+  check:
+    description: |
+      The workspace directory to check.
+    required: true
+    default: .
+  checklevel:
+    description: |
+      The minimum diagnostic level to report: Error, Warning, Information or Hint
+    required: true
+    default: Warning
+  configpath:
+    description: |
+      Path to a configuration path to load, relative to the check path.
+    default: ''
+  fail_on_warnings:
+    description: |
+      Whether to fail the action given a warning diagnosis.
+    type: boolean
+    required: true
+    default: false
+
+runs:
+  using: node24
+  main: dist/index.js

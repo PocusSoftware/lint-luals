@@ -1,0 +1,66 @@
+{
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": { "preferences": { "importModuleSpecifierEnding": "js" } }
+      }
+    }
+  },
+  "formatter": [
+    { "language_server": { "name": "oxfmt" } },
+    { "code_action": "source.fixAll.oxc" }
+  ],
+  "format_on_save": "on",
+  "ensure_final_newline_on_save": true,
+  "languages": {
+    "TypeScript": {
+      "formatter": [
+        { "language_server": { "name": "oxfmt" } },
+        { "code_action": "source.fixAll.oxc" }
+      ],
+      "format_on_save": "on"
+    },
+    "JSON": {
+      "formatter": [
+        { "language_server": { "name": "oxfmt" } },
+        { "code_action": "source.fixAll.oxc" }
+      ],
+      "format_on_save": "on"
+    },
+    "JSONC": {
+      "formatter": [
+        { "language_server": { "name": "oxfmt" } },
+        { "code_action": "source.fixAll.oxc" }
+      ],
+      "format_on_save": "on"
+    },
+    "Markdown": {
+      "formatter": [
+        { "language_server": { "name": "oxfmt" } },
+        { "code_action": "source.fixAll.oxc" }
+      ],
+      "format_on_save": "on"
+    },
+    "YAML": {
+      "formatter": [
+        { "language_server": { "name": "oxfmt" } },
+        { "code_action": "source.fixAll.oxc" }
+      ],
+      "format_on_save": "on"
+    },
+    "Git Ignore": {
+      "formatter": [
+        { "language_server": { "name": "oxfmt" } },
+        { "code_action": "source.fixAll.oxc" }
+      ],
+      "format_on_save": "on"
+    },
+    "CSS": {
+      "formatter": [
+        { "language_server": { "name": "oxfmt" } },
+        { "code_action": "source.fixAll.oxc" }
+      ],
+      "format_on_save": "on"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Output
+dist/
+
+# IDE
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.zed/*
+!.zed/settings.json
+
+# OS
+.DS_Store
+Thumbs.db
