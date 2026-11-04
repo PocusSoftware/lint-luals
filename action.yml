@@ -1,6 +1,10 @@
 name: 'Lint LuaLS'
 description: 'Check your Lua code with Lua Language Server.'
 
+branding:
+  icon: 'check-circle'
+  color: 'yellow'
+
 inputs:
   version:
     description: |
